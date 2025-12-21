@@ -5,6 +5,12 @@
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
   background-color: #ffffff;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.card:hover {
+  opacity: 0.9;
 }
 
 .image {
