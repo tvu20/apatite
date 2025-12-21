@@ -1,3 +1,6 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import styles from "./BoardDetail.module.css";
 import NoteImage from "./NoteImage";
 
@@ -9,6 +12,10 @@ type Board = {
     id: string;
     imageUrl: string;
   }>;
+  group: {
+    id: string;
+    name: string;
+  };
 };
 
 type BoardDetailProps = {
@@ -16,8 +23,17 @@ type BoardDetailProps = {
 };
 
 export default function BoardDetail({ board }: BoardDetailProps) {
+  const router = useRouter();
+
+  const handleReturnToGroup = () => {
+    router.push(`/group/${board.group.id}`);
+  };
+
   return (
     <div className={styles.container}>
+      <button onClick={handleReturnToGroup} className={styles.returnButton}>
+        Return to {board.group.name}
+      </button>
       <h1 className={styles.title}>{board.name}</h1>
       {board.description && (
         <p className={styles.description}>{board.description}</p>

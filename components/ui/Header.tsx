@@ -34,6 +34,12 @@ export default function Header() {
     });
   };
 
+  const handleCreateClick = () => {
+    startTransition(() => {
+      router.push("/create");
+    });
+  };
+
   if (status === "loading" || isLoading || isPending) {
     return <Loader />;
   }
@@ -45,6 +51,9 @@ export default function Header() {
       </button>
       <button onClick={handleSearchClick} className={styles.button}>
         search
+      </button>
+      <button onClick={handleCreateClick} className={styles.button}>
+        create
       </button>
       {session?.user ? (
         <button onClick={handleSignOut} className={styles.button}>

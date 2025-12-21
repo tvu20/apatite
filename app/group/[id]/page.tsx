@@ -88,8 +88,9 @@ async function GroupContent({
 export default async function GroupPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   const session = await getSession();
 
   if (!session?.user?.email) {
@@ -108,7 +109,7 @@ export default async function GroupPage({
     <Layout>
       <PageContent>
         <Suspense fallback={<Loader />}>
-          <GroupContent groupId={params.id} userId={user.id} />
+          <GroupContent groupId={id} userId={user.id} />
         </Suspense>
       </PageContent>
     </Layout>

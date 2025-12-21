@@ -20,6 +20,12 @@ async function getBoardData(boardId: string, userId: string) {
                 imageUrl: true;
               };
             };
+            group: {
+              select: {
+                id: true;
+                name: true;
+              };
+            };
           };
         }) => Promise<{
           id: string;
@@ -29,6 +35,10 @@ async function getBoardData(boardId: string, userId: string) {
             id: string;
             imageUrl: string;
           }>;
+          group: {
+            id: string;
+            name: string;
+          };
         } | null>;
       };
     }
@@ -39,6 +49,12 @@ async function getBoardData(boardId: string, userId: string) {
         select: {
           id: true,
           imageUrl: true,
+        },
+      },
+      group: {
+        select: {
+          id: true,
+          name: true,
         },
       },
     },
@@ -66,8 +82,9 @@ async function BoardContent({
 export default async function BoardPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   const session = await getSession();
 
   if (!session?.user?.email) {
@@ -86,7 +103,7 @@ export default async function BoardPage({
     <Layout>
       <PageContent>
         <Suspense fallback={<Loader />}>
-          <BoardContent boardId={params.id} userId={user.id} />
+          <BoardContent boardId={id} userId={user.id} />
         </Suspense>
       </PageContent>
     </Layout>
