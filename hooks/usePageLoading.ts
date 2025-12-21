@@ -19,13 +19,14 @@ export const usePageLoading = () => {
       // Defer state update to avoid synchronous setState in effect
       const startTimeoutId = setTimeout(() => {
         setIsPageLoading(true);
-      }, 0);
-
-      const endTimeoutId = setTimeout(() => {
-        setIsPageLoading(false);
         prevPathnameRef.current = pathname;
         prevSearchParamsRef.current = searchParams.toString();
-      }, 100);
+      }, 0);
+
+      // Wait for the page to finish loading
+      const endTimeoutId = setTimeout(() => {
+        setIsPageLoading(false);
+      }, 300);
 
       return () => {
         clearTimeout(startTimeoutId);

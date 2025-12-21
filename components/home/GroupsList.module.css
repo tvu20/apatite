@@ -13,4 +13,10 @@
   font-family: var(--font-geist-sans);
   background-color: var(--group-bg-color);
   color: var(--group-text-color);
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.groupItem:hover {
+  opacity: 0.9;
 }

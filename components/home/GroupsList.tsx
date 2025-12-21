@@ -1,3 +1,6 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import styles from "./GroupsList.module.css";
 
 type Group = {
@@ -12,12 +15,19 @@ type GroupsListProps = {
 };
 
 export default function GroupsList({ groups }: GroupsListProps) {
+  const router = useRouter();
+
+  const handleGroupClick = (groupId: string) => {
+    router.push(`/group/${groupId}`);
+  };
+
   return (
     <div className={styles.container}>
       {groups.map((group) => (
         <div
           key={group.id}
           className={styles.groupItem}
+          onClick={() => handleGroupClick(group.id)}
           style={
             {
               "--group-bg-color": group.backgroundColor,
