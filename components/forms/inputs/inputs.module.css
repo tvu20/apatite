@@ -82,6 +82,64 @@ input.error {
   opacity: 0.7;
 }
 
+/* COLOR INPUT */
+
+.colorInput {
+  display: flex;
+  flex-direction: column;
+  margin: var(--spacing-medium) var(--spacing-medium) var(--spacing-xx-small) 0;
+}
+
+.colorInput label {
+  font-size: var(--font-size-body-xsmall);
+  font-family: var(--font-belleza);
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-small);
+}
+
+.colorInputContainer {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.colorInput input[type="color"] {
+  font-family: var(--font-be-vietnam);
+  font-weight: 300;
+  width: 100px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-bottom: 1px solid var(--content-box-border-color);
+  cursor: pointer;
+  background: none;
+  flex-shrink: 0;
+}
+
+.colorInput input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.colorInput input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 0;
+}
+
+.colorTextInput {
+  font-family: var(--font-be-vietnam);
+  font-weight: 300;
+  width: 120px;
+  height: 30px;
+  padding: var(--spacing-xx-small) 0;
+  border: none;
+  border-bottom: 1px solid var(--content-box-border-color);
+  font-size: var(--font-size-body-medium);
+}
+
+.colorTextInput::placeholder {
+  opacity: 0.7;
+}
+
 /* SELECT INPUT */
 
 .selectInput {
