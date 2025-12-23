@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import {
   FieldValues,
   Path,
@@ -15,6 +15,7 @@ type ColorInputProps<T extends FieldValues> = {
   required?: boolean;
   error?: string;
   fullWidth?: boolean;
+  defaultValue?: string;
 };
 
 const ColorInput = <T extends FieldValues>({
@@ -25,12 +26,27 @@ const ColorInput = <T extends FieldValues>({
   required = false,
   error,
   fullWidth = false,
+  defaultValue,
 }: ColorInputProps<T>) => {
   const textInputRef = useRef<HTMLInputElement>(null);
   const colorInputRef = useRef<HTMLInputElement | null>(null);
+  const initializedRef = useRef(false);
 
   const inputId = `color-${name}`;
   const textInputId = `color-text-${name}`;
+
+  // Initialize text input and color picker with default value
+  useEffect(() => {
+    if (!initializedRef.current && defaultValue) {
+      if (textInputRef.current) {
+        textInputRef.current.value = defaultValue;
+      }
+      if (colorInputRef.current) {
+        colorInputRef.current.value = defaultValue;
+      }
+      initializedRef.current = true;
+    }
+  }, [defaultValue]);
 
   // Sync color picker when text input changes
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,6 +75,15 @@ const ColorInput = <T extends FieldValues>({
     ...registerProps
   } = register(name, {
     required: required ? "This field is required" : false,
+    validate: required
+      ? (value) => {
+          const trimmed = value?.trim();
+          if (!trimmed || trimmed === "" || trimmed === "#000000") {
+            return "This field is required";
+          }
+          return true;
+        }
+      : undefined,
   });
 
   // Handle ref callback

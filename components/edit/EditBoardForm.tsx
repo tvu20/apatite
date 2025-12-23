@@ -3,16 +3,24 @@
 import SelectInput from "@/components/forms/inputs/SelectInput";
 import TextAreaInput from "@/components/forms/inputs/TextAreaInput";
 import TextInput from "@/components/forms/inputs/TextInput";
+import ConfirmModal from "@/components/ui/ConfirmModal";
 import Loader from "@/components/ui/Loader";
 import Snackbar from "@/components/ui/Snackbar";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import styles from "./CreateBoardForm.module.css";
+import styles from "./EditBoardForm.module.css";
 
 type Group = {
   id: string;
   name: string;
+};
+
+type Board = {
+  id: string;
+  name: string;
+  description: string | null;
+  groupId: string;
 };
 
 type FormData = {
@@ -21,27 +29,34 @@ type FormData = {
   group: string;
 };
 
-type CreateBoardFormProps = {
+type EditBoardFormProps = {
+  board: Board;
   groups: Group[];
 };
 
-export default function CreateBoardForm({ groups }: CreateBoardFormProps) {
+export default function EditBoardForm({ board, groups }: EditBoardFormProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    mode: "onSubmit",
+    defaultValues: {
+      name: board.name,
+      description: board.description || "",
+      group: board.groupId,
+    },
   });
 
   const onSubmit = async (data: FormData) => {
     setIsLoading(true);
     try {
-      const response = await fetch("/api/boards", {
-        method: "POST",
+      const response = await fetch(`/api/boards/${board.id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -54,28 +69,52 @@ export default function CreateBoardForm({ groups }: CreateBoardFormProps) {
 
       if (!response.ok) {
         const error = await response.json();
-        console.error("Error creating board:", error);
+        console.error("Error updating board:", error);
         setIsLoading(false);
         return;
       }
 
-      const result = await response.json();
       setIsLoading(false);
       setShowSuccess(true);
       setTimeout(() => {
-        router.push(`/board/${result.board.id}`);
+        router.push(`/board/${board.id}`);
       }, 1000);
     } catch (error) {
-      console.error("Error creating board:", error);
+      console.error("Error updating board:", error);
       setIsLoading(false);
     }
   };
 
   const handleCancel = () => {
-    router.push("/");
+    router.push(`/board/${board.id}`);
   };
 
-  if (isLoading) {
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    try {
+      const response = await fetch(`/api/boards/${board.id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        console.error("Error deleting board:", error);
+        setIsDeleting(false);
+        setShowDeleteModal(false);
+        return;
+      }
+
+      setIsDeleting(false);
+      setShowDeleteModal(false);
+      router.push("/");
+    } catch (error) {
+      console.error("Error deleting board:", error);
+      setIsDeleting(false);
+      setShowDeleteModal(false);
+    }
+  };
+
+  if (isLoading || isDeleting) {
     return <Loader />;
   }
 
@@ -114,23 +153,41 @@ export default function CreateBoardForm({ groups }: CreateBoardFormProps) {
         <div className={styles.buttons}>
           <button
             type="button"
-            onClick={handleCancel}
-            className={styles.cancelButton}
+            onClick={() => setShowDeleteModal(true)}
+            className={styles.deleteButton}
           >
-            Cancel
+            Delete
           </button>
-          <button type="submit" className={styles.createButton}>
-            Create
-          </button>
+          <div className={styles.rightButtons}>
+            <button
+              type="button"
+              onClick={handleCancel}
+              className={styles.cancelButton}
+            >
+              Cancel
+            </button>
+            <button type="submit" className={styles.updateButton}>
+              Update
+            </button>
+          </div>
         </div>
       </form>
       {showSuccess && (
         <Snackbar
-          message="Board created successfully!"
+          message="Board updated successfully!"
           onClose={() => setShowSuccess(false)}
           duration={2000}
         />
       )}
+      <ConfirmModal
+        isOpen={showDeleteModal}
+        title="Delete Board"
+        message="Are you sure you want to delete this board? This action cannot be undone."
+        confirmText="Delete"
+        cancelText="Cancel"
+        onConfirm={handleDelete}
+        onCancel={() => setShowDeleteModal(false)}
+      />
     </>
   );
 }

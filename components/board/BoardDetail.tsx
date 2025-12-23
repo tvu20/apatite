@@ -29,11 +29,20 @@ export default function BoardDetail({ board }: BoardDetailProps) {
     router.push(`/group/${board.group.id}`);
   };
 
+  const handleEditBoard = () => {
+    router.push(`/edit/${board.id}`);
+  };
+
   return (
     <div className={styles.container}>
-      <button onClick={handleReturnToGroup} className={styles.returnButton}>
-        Return to {board.group.name}
-      </button>
+      <div className={styles.buttonRow}>
+        <button onClick={handleReturnToGroup} className={styles.returnButton}>
+          Return to {board.group.name}
+        </button>
+        <button onClick={handleEditBoard} className={styles.editButton}>
+          edit board
+        </button>
+      </div>
       <h1 className={styles.title}>{board.name}</h1>
       {board.description && (
         <p className={styles.description}>{board.description}</p>

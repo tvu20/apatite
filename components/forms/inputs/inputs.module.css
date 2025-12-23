@@ -173,6 +173,10 @@ input.error {
   font-size: var(--font-size-body-medium);
 }
 
+.selectInput select.error {
+  border-bottom: 1px solid var(--snackbar-error-color);
+}
+
 /* multiselect */
 
 .multiSelectInput {

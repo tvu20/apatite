@@ -25,8 +25,12 @@ const SelectInput = <T extends FieldValues>({
       <select
         {...register(name, {
           required: required ? "This field is required" : false,
+          validate: required
+            ? (value) => value !== "" || "This field is required"
+            : undefined,
         })}
         style={{ width }}
+        className={error ? styles.error : ""}
       >
         {children}
       </select>

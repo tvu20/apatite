@@ -26,11 +26,27 @@ export default function CreateGroupForm() {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormData>({
+    mode: "onSubmit",
+  });
 
   const onSubmit = async (data: FormData) => {
     setIsLoading(true);
     try {
+      // Use default values if colors are empty, undefined, or the default color picker value (#000000)
+      const backgroundColor =
+        data.backgroundColor?.trim() &&
+        data.backgroundColor.trim() !== "" &&
+        data.backgroundColor.trim() !== "#000000"
+          ? data.backgroundColor.trim()
+          : "#c7c7c7";
+      const textColor =
+        data.textColor?.trim() &&
+        data.textColor.trim() !== "" &&
+        data.textColor.trim() !== "#000000"
+          ? data.textColor.trim()
+          : "#5e5e5e";
+
       const response = await fetch("/api/groups", {
         method: "POST",
         headers: {
@@ -39,8 +55,8 @@ export default function CreateGroupForm() {
         body: JSON.stringify({
           name: data.name,
           description: data.description,
-          backgroundColor: data.backgroundColor,
-          textColor: data.textColor,
+          backgroundColor,
+          textColor,
         }),
       });
 
@@ -94,7 +110,6 @@ export default function CreateGroupForm() {
           setValue={setValue}
           name="backgroundColor"
           label="Background Color"
-          required
           error={errors.backgroundColor?.message}
         />
         <ColorInput
@@ -102,7 +117,6 @@ export default function CreateGroupForm() {
           setValue={setValue}
           name="textColor"
           label="Text Color"
-          required
           error={errors.textColor?.message}
         />
         <div className={styles.buttons}>
