@@ -4,6 +4,10 @@
   padding: 0 1rem;
 }
 
+.searchContainer {
+  margin-bottom: 2rem;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

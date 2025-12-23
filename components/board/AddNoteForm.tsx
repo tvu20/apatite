@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import TextAreaInput from "@/components/forms/inputs/TextAreaInput";
 import TextInput from "@/components/forms/inputs/TextInput";
 import ConfirmModal from "@/components/ui/ConfirmModal";
 import Loader from "@/components/ui/Loader";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./AddNoteForm.module.css";
 
@@ -78,7 +78,10 @@ export default function AddNoteForm({
 
       if (!response.ok) {
         const error = await response.json();
-        console.error(`Error ${isEditing ? "updating" : "creating"} note:`, error);
+        console.error(
+          `Error ${isEditing ? "updating" : "creating"} note:`,
+          error
+        );
         setIsLoading(false);
         return;
       }
@@ -86,7 +89,10 @@ export default function AddNoteForm({
       setIsLoading(false);
       onSuccess();
     } catch (error) {
-      console.error(`Error ${isEditing ? "updating" : "creating"} note:`, error);
+      console.error(
+        `Error ${isEditing ? "updating" : "creating"} note:`,
+        error
+      );
       setIsLoading(false);
     }
   };
@@ -193,4 +199,3 @@ export default function AddNoteForm({
     </>
   );
 }
-

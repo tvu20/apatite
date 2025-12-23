@@ -131,9 +131,7 @@ export async function DELETE(
     await (
       prisma as unknown as {
         note: {
-          delete: (args: {
-            where: { id: string };
-          }) => Promise<{ id: string }>;
+          delete: (args: { where: { id: string } }) => Promise<{ id: string }>;
         };
       }
     ).note.delete({
@@ -149,4 +147,3 @@ export async function DELETE(
     );
   }
 }
-

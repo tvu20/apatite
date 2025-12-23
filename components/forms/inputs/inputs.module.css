@@ -243,6 +243,30 @@ input.error {
 
 /* MEDIA QUERIES */
 
+/* SEARCH INPUT */
+
+.searchInput {
+  display: flex;
+  flex-direction: column;
+  margin: var(--spacing-medium) var(--spacing-medium) var(--spacing-xx-small) 0;
+}
+
+.searchInputField {
+  font-family: var(--font-be-vietnam);
+  font-weight: 300;
+  width: 100%;
+  max-width: 70vw;
+  height: 30px;
+  padding: var(--spacing-xx-small) 0;
+  border: none;
+  border-bottom: 1px solid var(--content-box-border-color);
+  font-size: var(--font-size-body-medium);
+}
+
+.searchInputField::placeholder {
+  opacity: 0.7;
+}
+
 @media (max-width: 1050px) {
   .classRow .textInput {
     margin-bottom: var(--spacing-medium);
