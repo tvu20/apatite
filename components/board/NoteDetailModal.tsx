@@ -14,14 +14,21 @@ type NoteDetailModalProps = {
   note: Note | null;
   isOpen: boolean;
   onClose: () => void;
+  onEdit: (note: Note) => void;
 };
 
 export default function NoteDetailModal({
   note,
   isOpen,
   onClose,
+  onEdit,
 }: NoteDetailModalProps) {
   if (!isOpen || !note) return null;
+
+  const handleEdit = () => {
+    onEdit(note);
+    onClose();
+  };
 
   return (
     <div className={styles.overlay} onClick={onClose}>
@@ -42,6 +49,9 @@ export default function NoteDetailModal({
               {note.link}
             </a>
           )}
+          <button onClick={handleEdit} className={styles.editButton}>
+            Edit
+          </button>
         </div>
       </div>
     </div>

@@ -36,7 +36,9 @@ export default function BoardDetail({ board }: BoardDetailProps) {
   const router = useRouter();
   const [showAddNoteModal, setShowAddNoteModal] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
+  const [editingNote, setEditingNote] = useState<Note | null>(null);
 
   const handleReturnToGroup = () => {
     router.push(`/group/${board.group.id}`);
@@ -47,18 +49,28 @@ export default function BoardDetail({ board }: BoardDetailProps) {
   };
 
   const handleAddNote = () => {
+    setEditingNote(null);
     setShowAddNoteModal(true);
   };
 
-  const handleNoteCreated = () => {
+  const handleNoteCreated = (isEditing: boolean) => {
     setShowAddNoteModal(false);
+    setEditingNote(null);
+    setSuccessMessage(
+      isEditing ? "Note updated successfully!" : "Note created successfully!"
+    );
     setShowSuccess(true);
-    // Refresh the page to show the new note
+    // Refresh the page to show the new/updated note
     router.refresh();
   };
 
   const handleNoteClick = (note: Note) => {
     setSelectedNote(note);
+  };
+
+  const handleEditNote = (note: Note) => {
+    setEditingNote(note);
+    setShowAddNoteModal(true);
   };
 
   return (
@@ -91,18 +103,25 @@ export default function BoardDetail({ board }: BoardDetailProps) {
       </div>
       <FormModal
         isOpen={showAddNoteModal}
-        title="Add a Note"
-        onClose={() => setShowAddNoteModal(false)}
+        title={editingNote ? "Edit Note" : "Add a Note"}
+        onClose={() => {
+          setShowAddNoteModal(false);
+          setEditingNote(null);
+        }}
       >
         <AddNoteForm
           boardId={board.id}
-          onCancel={() => setShowAddNoteModal(false)}
-          onSuccess={handleNoteCreated}
+          note={editingNote}
+          onCancel={() => {
+            setShowAddNoteModal(false);
+            setEditingNote(null);
+          }}
+          onSuccess={() => handleNoteCreated(!!editingNote)}
         />
       </FormModal>
       {showSuccess && (
         <Snackbar
-          message="Note created successfully!"
+          message={successMessage}
           onClose={() => setShowSuccess(false)}
           duration={2000}
         />
@@ -111,6 +130,7 @@ export default function BoardDetail({ board }: BoardDetailProps) {
         note={selectedNote}
         isOpen={selectedNote !== null}
         onClose={() => setSelectedNote(null)}
+        onEdit={handleEditNote}
       />
     </div>
   );

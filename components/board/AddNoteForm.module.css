@@ -7,8 +7,13 @@
 .buttons {
   display: flex;
   gap: 1rem;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin-top: 1rem;
+}
+
+.rightButtons {
+  display: flex;
+  gap: 1rem;
 }
 
 .cancelButton,
@@ -37,5 +42,14 @@
 
 .createButton:hover {
   background-color: #1f2937;
+}
+
+.deleteButton {
+  background-color: #dc2626;
+  color: #ffffff;
+}
+
+.deleteButton:hover {
+  background-color: #b91c1c;
 }
 
