@@ -17,7 +17,10 @@ async function getBoardData(boardId: string, userId: string) {
             notes: {
               select: {
                 id: true;
+                name: true;
+                description: true;
                 imageUrl: true;
+                link: true;
               };
             };
             group: {
@@ -33,7 +36,10 @@ async function getBoardData(boardId: string, userId: string) {
           description: string | null;
           notes: Array<{
             id: string;
+            name: string;
+            description: string | null;
             imageUrl: string;
+            link: string | null;
           }>;
           group: {
             id: string;
@@ -48,7 +54,10 @@ async function getBoardData(boardId: string, userId: string) {
       notes: {
         select: {
           id: true,
+          name: true,
+          description: true,
           imageUrl: true,
+          link: true,
         },
       },
       group: {
