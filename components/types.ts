@@ -4,6 +4,7 @@ export type Note = {
   description?: string | null;
   imageUrl: string;
   link?: string | null;
+  createdAt?: Date | string;
 };
 
 export type Board = {

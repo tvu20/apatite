@@ -20,6 +20,7 @@ async function getBoardData(boardId: string, userId: string) {
                 description: true;
                 imageUrl: true;
                 link: true;
+                createdAt: true;
               };
             };
             group: {
@@ -41,6 +42,7 @@ async function getBoardData(boardId: string, userId: string) {
             description: string | null;
             imageUrl: string;
             link: string | null;
+            createdAt: Date;
           }>;
           group: {
             id: string;
@@ -61,6 +63,7 @@ async function getBoardData(boardId: string, userId: string) {
           description: true,
           imageUrl: true,
           link: true,
+          createdAt: true,
         },
       },
       group: {
