@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "postinstall": "prisma generate",
     "update:prisma": "npx prisma db push && npx prisma generate",
     "lint": "npx tsc && eslint --fix"
   },
