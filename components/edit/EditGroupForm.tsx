@@ -179,7 +179,7 @@ export default function EditGroupForm({ group }: EditGroupFormProps) {
       <ConfirmModal
         isOpen={showDeleteModal}
         title="Delete Group"
-        message="Are you sure you want to delete this group? This action cannot be undone."
+        message="Are you sure you want to delete this group? This action cannot be undone and will also delete all boards and notes in this group."
         confirmText="Delete"
         cancelText="Cancel"
         onConfirm={handleDelete}

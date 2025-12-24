@@ -1,5 +1,5 @@
-import Layout from "@/components/Layout";
 import SearchResults from "@/components/search/SearchResults";
+import Layout from "@/components/ui/Layout";
 import Loader from "@/components/ui/Loader";
 import { getSession } from "@/lib/auth-server";
 import prisma from "@/lib/prisma";

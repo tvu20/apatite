@@ -33,7 +33,6 @@ export default function CreateGroupForm() {
   const onSubmit = async (data: FormData) => {
     setIsLoading(true);
     try {
-      // Use default values if colors are empty, undefined, or the default color picker value (#000000)
       const backgroundColor =
         data.backgroundColor?.trim() &&
         data.backgroundColor.trim() !== "" &&

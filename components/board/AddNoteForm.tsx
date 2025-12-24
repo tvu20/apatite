@@ -33,6 +33,7 @@ export default function AddNoteForm({
   const [isLoading, setIsLoading] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [imageUrl, setImageUrl] = useState<string>(note?.imageUrl || "");
   const {
     register,
     handleSubmit,
@@ -48,6 +49,35 @@ export default function AddNoteForm({
         }
       : undefined,
   });
+
+  const isValidImageUrl = (url: string | undefined): boolean => {
+    if (!url || url.trim() === "") return false;
+    try {
+      // Try to validate as-is first
+      const urlObj = new URL(url);
+      return urlObj.protocol === "http:" || urlObj.protocol === "https:";
+    } catch {
+      // If that fails, try adding https:// prefix
+      try {
+        const urlWithProtocol = `https://${url.trim()}`;
+        const urlObj = new URL(urlWithProtocol);
+        return urlObj.protocol === "https:";
+      } catch {
+        return false;
+      }
+    }
+  };
+
+  const getImageUrlForPreview = (url: string | undefined): string => {
+    if (!url || url.trim() === "") return "";
+    try {
+      new URL(url);
+      return url; // Already a valid URL
+    } catch {
+      // Try adding https:// prefix
+      return `https://${url.trim()}`;
+    }
+  };
 
   const onSubmit = async (data: FormData) => {
     setIsLoading(true);
@@ -139,7 +169,20 @@ export default function AddNoteForm({
           required
           fullWidth
           error={errors.imageUrl?.message}
+          onChange={(e) => setImageUrl(e.target.value)}
         />
+        {isValidImageUrl(imageUrl) && (
+          <div className={styles.imagePreview}>
+            <img
+              src={getImageUrlForPreview(imageUrl)}
+              alt="Preview"
+              className={styles.previewImage}
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+              }}
+            />
+          </div>
+        )}
         <TextInput
           register={register}
           name="link"

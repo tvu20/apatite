@@ -14,7 +14,6 @@ export default function SearchResults({ boards }: SearchResultsProps) {
   const [searchText, setSearchText] = useState("");
   const [filteredBoards, setFilteredBoards] = useState(boards);
 
-  // Update filtered boards when boards prop changes
   useEffect(() => {
     setFilteredBoards(boards);
   }, [boards]);

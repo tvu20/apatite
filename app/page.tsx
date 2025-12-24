@@ -1,6 +1,6 @@
-import GroupsContent from "@/components/home/GroupsContent";
+import GroupsList from "@/components/home/GroupsList";
 import HomePage from "@/components/home/HomePage";
-import Layout from "@/components/Layout";
+import Layout from "@/components/ui/Layout";
 import { getSession } from "@/lib/auth-server";
 import prisma from "@/lib/prisma";
 
@@ -54,7 +54,7 @@ export default async function Home() {
 
   return (
     <Layout>
-      <GroupsContent groups={groups} />
+      <GroupsList groups={groups} />
     </Layout>
   );
 }

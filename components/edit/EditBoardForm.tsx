@@ -176,7 +176,7 @@ export default function EditBoardForm({ board, groups }: EditBoardFormProps) {
       <ConfirmModal
         isOpen={showDeleteModal}
         title="Delete Board"
-        message="Are you sure you want to delete this board? This action cannot be undone."
+        message="Are you sure you want to delete this board? This action cannot be undone and will also delete all notes in this board."
         confirmText="Delete"
         cancelText="Cancel"
         onConfirm={handleDelete}
