@@ -82,6 +82,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(3, minmax(200px, 1fr));
   gap: var(--spacing-xlarge);
+  margin-bottom: var(--spacing-xlarge);
 }
 
 .form {
