@@ -18,6 +18,9 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  groups        Group[]
+  boards        Board[]
+  notes         Note[]
 }
 
 model Account {
@@ -56,4 +59,47 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Group {
+  id            String   @id @default(cuid())
+  createdAt     DateTime @default(now())
+  name          String
+  description   String?
+  backgroundColor String
+  textColor     String
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  boards        Board[]
+
+  @@map("groups")
+}
+
+model Board {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  name        String
+  description String?
+  groupId     String
+  group       Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  notes       Note[]
+
+  @@map("boards")
+}
+
+model Note {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  name        String
+  description String?
+  imageUrl    String
+  link        String?
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  boardId     String
+  board       Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
+
+  @@map("notes")
 }
