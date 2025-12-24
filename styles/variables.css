@@ -3,6 +3,7 @@ body {
   --primary-theme-color: #76a455;
   --primary-background-color: #fff;
   --primary-text-color: #171717;
+  --primary-border-color: #171717;
 
   /* fonts */
   --logo-font: var(--font-poiret-one);
@@ -26,6 +27,7 @@ body {
   /* spacing */
   --spacing-page-border-vertical: 36px;
   --spacing-page-border-horizontal: 48px;
+  --spacing-header-margin-bottom: 80px;
   --spacing-xxx-small: 2px;
   --spacing-xx-small: 4px;
   --spacing-xsmall: 6px;

@@ -41,7 +41,7 @@ export default function SearchResults({ boards }: SearchResultsProps) {
           value={searchText}
           onChange={handleSearchChange}
           onBlur={handleSearchBlur}
-          placeholder="Search boards..."
+          placeholder="Search boards"
           fullWidth
         />
       </div>

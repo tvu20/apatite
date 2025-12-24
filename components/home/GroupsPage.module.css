@@ -14,3 +14,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-xlarge);
 }
+
+.title {
+  margin-bottom: var(--spacing-small-medium);
+}

@@ -49,7 +49,7 @@ export default function GroupsPage({ groups }: GroupsPageProps) {
             value={searchText}
             onChange={handleSearchChange}
             onBlur={handleSearchBlur}
-            placeholder="Search groups..."
+            placeholder="Search groups"
             fullWidth
           />
         </div>

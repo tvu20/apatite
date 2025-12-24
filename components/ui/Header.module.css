@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-xx-large);
+  margin-bottom: var(--spacing-header-margin-bottom);
 }
 
 .headerRight {
