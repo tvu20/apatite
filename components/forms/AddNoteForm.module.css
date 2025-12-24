@@ -1,0 +1,38 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form > div {
+  margin-top: var(--spacing-small);
+}
+
+.buttons {
+  display: flex;
+  gap: var(--spacing-small-medium);
+  justify-content: space-between;
+  margin-top: var(--spacing-large) !important;
+}
+
+.rightButtons {
+  display: flex;
+  gap: var(--spacing-small-medium);
+}
+
+.imagePreview {
+  /* width: 100%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 1rem; */
+  /* background-color: #f9fafb; */
+  border-radius: var(--card-border-radius);
+  /* border: 1px solid #e5e7eb; */
+}
+
+.previewImage {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: var(--card-border-radius);
+}

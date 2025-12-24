@@ -107,6 +107,14 @@ const ColorInput = <T extends FieldValues>({
       <label htmlFor={inputId}>{label}</label>
       <div className={styles.colorInputContainer}>
         <input
+          ref={textInputRef}
+          id={textInputId}
+          type="text"
+          placeholder="#000000"
+          onChange={handleTextChange}
+          className={`${styles.colorTextInput} ${error ? styles.error : ""}`}
+        />
+        <input
           {...registerProps}
           ref={handleColorRef}
           id={inputId}
@@ -116,14 +124,6 @@ const ColorInput = <T extends FieldValues>({
             handleColorChange(e);
           }}
           className={error ? styles.error : ""}
-        />
-        <input
-          ref={textInputRef}
-          id={textInputId}
-          type="text"
-          placeholder="#000000"
-          onChange={handleTextChange}
-          className={`${styles.colorTextInput} ${error ? styles.error : ""}`}
         />
       </div>
       {<span className={styles.errorMessage}>{error || " "}</span>}

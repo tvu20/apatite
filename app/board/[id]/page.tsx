@@ -1,4 +1,4 @@
-import BoardDetail from "@/components/board/BoardDetail";
+import BoardDetailPage from "@/components/pages/BoardDetailPage";
 import Layout from "@/components/ui/Layout";
 import Loader from "@/components/ui/Loader";
 import { getSession } from "@/lib/auth-server";
@@ -20,6 +20,7 @@ async function getBoardData(boardId: string, userId: string) {
                 description: true;
                 imageUrl: true;
                 link: true;
+                createdAt: true;
               };
             };
             group: {
@@ -41,6 +42,7 @@ async function getBoardData(boardId: string, userId: string) {
             description: string | null;
             imageUrl: string;
             link: string | null;
+            createdAt: Date;
           }>;
           group: {
             id: string;
@@ -61,6 +63,7 @@ async function getBoardData(boardId: string, userId: string) {
           description: true,
           imageUrl: true,
           link: true,
+          createdAt: true,
         },
       },
       group: {
@@ -90,7 +93,7 @@ async function BoardContent({
     notFound();
   }
 
-  return <BoardDetail board={board} />;
+  return <BoardDetailPage board={board} />;
 }
 
 export default async function BoardPage({

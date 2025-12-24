@@ -1,4 +1,4 @@
-import EditGroupPage from "@/components/edit/EditGroupPage";
+import EditGroupPage from "@/components/pages/EditGroupPage";
 import Layout from "@/components/ui/Layout";
 import Loader from "@/components/ui/Loader";
 import { getSession } from "@/lib/auth-server";
@@ -18,6 +18,7 @@ async function getGroupData(groupId: string, userId: string) {
             description: boolean;
             backgroundColor: boolean;
             textColor: boolean;
+            createdAt: boolean;
           };
         }) => Promise<{
           id: string;
@@ -25,6 +26,7 @@ async function getGroupData(groupId: string, userId: string) {
           description: string | null;
           backgroundColor: string;
           textColor: string;
+          createdAt: Date;
         } | null>;
       };
     }
@@ -36,6 +38,7 @@ async function getGroupData(groupId: string, userId: string) {
       description: true,
       backgroundColor: true,
       textColor: true,
+      createdAt: true,
     },
   });
 

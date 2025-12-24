@@ -1,4 +1,4 @@
-import CreatePageContent from "@/components/create/CreatePage";
+import CreatePageContent from "@/components/pages/CreatePage";
 import Layout from "@/components/ui/Layout";
 import Loader from "@/components/ui/Loader";
 import { getSession } from "@/lib/auth-server";

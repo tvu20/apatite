@@ -1,4 +1,4 @@
-import EditPage from "@/components/edit/EditPage";
+import EditPage from "@/components/pages/EditPage";
 import Layout from "@/components/ui/Layout";
 import Loader from "@/components/ui/Loader";
 import { getSession } from "@/lib/auth-server";

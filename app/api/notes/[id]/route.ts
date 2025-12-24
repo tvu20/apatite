@@ -22,13 +22,13 @@ export async function PUT(
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    // Verify the note belongs to the user
+    // Verify the note belongs to the user and get boardId
     const existingNote = await (
       prisma as unknown as {
         note: {
           findFirst: (args: {
             where: { id: string; userId: string };
-          }) => Promise<{ id: string } | null>;
+          }) => Promise<{ id: string; boardId: string } | null>;
         };
       }
     ).note.findFirst({
@@ -52,7 +52,7 @@ export async function PUT(
       );
     }
 
-    // Update the note
+    // Update the note (updatedAt will be automatically set by @updatedAt)
     const note = await (
       prisma as unknown as {
         note: {
@@ -75,6 +75,21 @@ export async function PUT(
         imageUrl,
         link: link || null,
       },
+    });
+
+    // Update the board's updatedAt timestamp
+    await (
+      prisma as unknown as {
+        board: {
+          update: (args: {
+            where: { id: string };
+            data: { updatedAt: Date };
+          }) => Promise<void>;
+        };
+      }
+    ).board.update({
+      where: { id: existingNote.boardId },
+      data: { updatedAt: new Date() },
     });
 
     return NextResponse.json({ success: true, note }, { status: 200 });
@@ -107,13 +122,13 @@ export async function DELETE(
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    // Verify the note belongs to the user
+    // Verify the note belongs to the user and get boardId
     const existingNote = await (
       prisma as unknown as {
         note: {
           findFirst: (args: {
             where: { id: string; userId: string };
-          }) => Promise<{ id: string } | null>;
+          }) => Promise<{ id: string; boardId: string } | null>;
         };
       }
     ).note.findFirst({
@@ -127,6 +142,8 @@ export async function DELETE(
       );
     }
 
+    const boardId = existingNote.boardId;
+
     // Delete the note
     await (
       prisma as unknown as {
@@ -136,6 +153,21 @@ export async function DELETE(
       }
     ).note.delete({
       where: { id },
+    });
+
+    // Update the board's updatedAt timestamp
+    await (
+      prisma as unknown as {
+        board: {
+          update: (args: {
+            where: { id: string };
+            data: { updatedAt: Date };
+          }) => Promise<void>;
+        };
+      }
+    ).board.update({
+      where: { id: boardId },
+      data: { updatedAt: new Date() },
     });
 
     return NextResponse.json({ success: true }, { status: 200 });

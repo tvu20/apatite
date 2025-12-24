@@ -1,4 +1,5 @@
 .container {
   min-height: 100vh;
-  background-color: #f9fafb;
+  padding: var(--spacing-page-border-vertical)
+    var(--spacing-page-border-horizontal);
 }

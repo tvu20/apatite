@@ -1,0 +1,48 @@
+.groupItem {
+  padding: var(--spacing-xlarge) var(--spacing-large);
+  border-radius: var(--card-border-radius);
+  background-color: var(--group-bg-color);
+  cursor: pointer;
+  transition: opacity 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.groupItem:hover {
+  opacity: 0.8;
+}
+
+.name {
+  font-size: var(--font-size-heading-small-medium);
+  font-weight: 700;
+  margin-bottom: var(--spacing-small);
+  color: var(--group-text-color);
+}
+
+.boardsCount {
+  font-size: var(--font-size-body-small);
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: var(--spacing-large);
+}
+
+.description {
+  margin: 0;
+  font-size: var(--font-size-body-medium);
+  line-height: 1.5;
+  opacity: 0.85;
+  flex-grow: 1;
+  margin-bottom: var(--spacing-large);
+}
+
+.dateContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.createdDate {
+  font-size: var(--font-size-body-xsmall);
+  opacity: 0.9;
+}

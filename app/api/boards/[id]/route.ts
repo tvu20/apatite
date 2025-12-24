@@ -72,7 +72,10 @@ export async function PUT(
       );
     }
 
-    // Update the board
+    const oldGroupId = existingBoard.groupId;
+    const groupIdChanged = oldGroupId !== groupId;
+
+    // Update the board (updatedAt will be automatically set by @updatedAt)
     const board = await (
       prisma as unknown as {
         board: {
@@ -94,6 +97,38 @@ export async function PUT(
         groupId,
       },
     });
+
+    // Update the group's updatedAt timestamp
+    // If groupId changed, update both old and new groups
+    await (
+      prisma as unknown as {
+        group: {
+          update: (args: {
+            where: { id: string };
+            data: { updatedAt: Date };
+          }) => Promise<void>;
+        };
+      }
+    ).group.update({
+      where: { id: groupId },
+      data: { updatedAt: new Date() },
+    });
+
+    if (groupIdChanged) {
+      await (
+        prisma as unknown as {
+          group: {
+            update: (args: {
+              where: { id: string };
+              data: { updatedAt: Date };
+            }) => Promise<void>;
+          };
+        }
+      ).group.update({
+        where: { id: oldGroupId },
+        data: { updatedAt: new Date() },
+      });
+    }
 
     return NextResponse.json({ success: true, board }, { status: 200 });
   } catch (error) {
@@ -125,13 +160,13 @@ export async function DELETE(
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    // Verify the board belongs to the user
+    // Verify the board belongs to the user and get groupId
     const existingBoard = await (
       prisma as unknown as {
         board: {
           findFirst: (args: {
             where: { id: string; userId: string };
-          }) => Promise<{ id: string } | null>;
+          }) => Promise<{ id: string; groupId: string } | null>;
         };
       }
     ).board.findFirst({
@@ -145,6 +180,8 @@ export async function DELETE(
       );
     }
 
+    const groupId = existingBoard.groupId;
+
     // Delete the board (cascade will handle notes)
     await (
       prisma as unknown as {
@@ -154,6 +191,21 @@ export async function DELETE(
       }
     ).board.delete({
       where: { id },
+    });
+
+    // Update the group's updatedAt timestamp
+    await (
+      prisma as unknown as {
+        group: {
+          update: (args: {
+            where: { id: string };
+            data: { updatedAt: Date };
+          }) => Promise<void>;
+        };
+      }
+    ).group.update({
+      where: { id: groupId },
+      data: { updatedAt: new Date() },
     });
 
     return NextResponse.json({ success: true }, { status: 200 });

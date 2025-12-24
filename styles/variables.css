@@ -1,0 +1,46 @@
+body {
+  /* theme colors */
+  --primary-theme-color: #15abab;
+  --primary-background-color: #fff;
+  --primary-text-color: #171717;
+  --primary-border-color: #171717;
+  --primary-error-color: #bf3f61;
+
+  /* fonts */
+  --logo-font: var(--font-poiret-one);
+  --body-font: var(--font-inter);
+
+  /* font sizes */
+  --font-size-heading-xlarge: 70px;
+  --font-size-heading-large: 40px;
+  --font-size-heading-medium-large: 36px;
+  --font-size-heading-medium: 32px;
+  --font-size-heading-small-medium: 28px;
+  --font-size-heading-small: 24px;
+  --font-size-heading-xsmall: 20px;
+  --font-size-body-large: 20px;
+  --font-size-body-medium-large: 18px;
+  --font-size-body-medium: 16px;
+  --font-size-body-small: 14px;
+  --font-size-body-xsmall: 12px;
+  --font-size-body-xx-small: 10px;
+
+  /* spacing */
+  --spacing-page-border-vertical: 36px;
+  --spacing-page-border-horizontal: 48px;
+  --spacing-header-margin-bottom: 80px;
+  --spacing-xxx-small: 2px;
+  --spacing-xx-small: 4px;
+  --spacing-xsmall: 6px;
+  --spacing-small: 10px;
+  --spacing-small-medium: 14px;
+  --spacing-medium: 20px;
+  --spacing-medium-large: 24px;
+  --spacing-large: 30px;
+  --spacing-xlarge: 40px;
+  --spacing-xx-large: 50px;
+  --spacing-xxx-large: 60px;
+  --spacing-xxxx-large: 70px;
+
+  --card-border-radius: 0.5rem;
+}

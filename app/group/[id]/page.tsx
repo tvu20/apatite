@@ -1,4 +1,4 @@
-import GroupDetail from "@/components/group/GroupDetail";
+import GroupDetailPage from "@/components/pages/GroupDetailPage";
 import Layout from "@/components/ui/Layout";
 import Loader from "@/components/ui/Loader";
 import { getSession } from "@/lib/auth-server";
@@ -28,15 +28,21 @@ async function getGroupData(groupId: string, userId: string) {
                   };
                 };
               };
+              orderBy?: {
+                updatedAt: "asc" | "desc";
+              };
             };
           };
         }) => Promise<{
           id: string;
           name: string;
           description: string | null;
+          backgroundColor: string;
+          textColor: string;
           boards: Array<{
             id: string;
             name: string;
+            createdAt: Date;
             notes: Array<{ id: string; imageUrl: string }>;
             _count: { notes: number };
           }>;
@@ -61,11 +67,32 @@ async function getGroupData(groupId: string, userId: string) {
             },
           },
         },
+        orderBy: {
+          updatedAt: "desc",
+        },
       },
     },
   });
 
-  return group;
+  if (!group) {
+    return null;
+  }
+
+  // Add group information to each board for BoardItem component
+  const boardsWithGroup = group.boards.map((board) => ({
+    ...board,
+    group: {
+      id: group.id,
+      name: group.name,
+      backgroundColor: group.backgroundColor,
+      textColor: group.textColor,
+    },
+  }));
+
+  return {
+    ...group,
+    boards: boardsWithGroup,
+  };
 }
 
 async function GroupContent({
@@ -81,7 +108,7 @@ async function GroupContent({
     notFound();
   }
 
-  return <GroupDetail group={group} />;
+  return <GroupDetailPage group={group} />;
 }
 
 export default async function GroupPage({
