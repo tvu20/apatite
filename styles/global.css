@@ -37,6 +37,12 @@ h1 {
   font-size: var(--font-size-heading-large);
 }
 
+@media (max-width: 768px) {
+  h1 {
+    font-size: var(--font-size-heading-medium);
+  }
+}
+
 .card-name {
   font-size: var(--font-size-heading-small-medium);
   margin-bottom: var(--spacing-small);
@@ -134,4 +140,23 @@ h1 {
 
 .submit-button:hover {
   background-color: #1f2937;
+}
+
+/* Responsive grid */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cancel-button,
+  .submit-button,
+  .delete-button {
+    font-size: var(--font-size-body-small);
+  }
 }

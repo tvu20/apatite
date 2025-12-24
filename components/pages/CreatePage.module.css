@@ -32,6 +32,12 @@
   cursor: pointer;
 }
 
+@media (max-width: 768px) {
+  .select {
+    font-size: var(--font-size-heading-medium);
+  }
+}
+
 .select:focus {
   outline: none;
   border-color: var(--primary-theme-color);

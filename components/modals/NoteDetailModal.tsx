@@ -58,6 +58,11 @@ export default function NoteDetailModal({
             </div>
           </div>
         </div>
+        <div className={styles.closeButtonContainer}>
+          <button className={styles.closeButton} onClick={onClose}>
+            close
+          </button>
+        </div>
       </div>
     </div>
   );

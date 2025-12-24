@@ -23,6 +23,44 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.closeButton {
+  display: none;
+}
+
+/* Show close button on mobile only */
+@media (max-width: 768px) {
+  .closeButtonContainer {
+    display: flex;
+    justify-content: center;
+  }
+
+  .closeButton {
+    display: block;
+    margin-bottom: var(--spacing-small);
+    padding: var(--spacing-small) var(--spacing-medium-large);
+    font-size: var(--font-size-body-medium-large);
+    color: var(--primary-text-color);
+    border: 1px solid var(--primary-theme-color);
+    border-radius: var(--card-border-radius);
+    cursor: pointer;
+    font-weight: 400;
+  }
+}
+
+/* Full screen on tablet and smaller */
+@media (max-width: 768px) {
+  .modal {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 95%;
+    border-radius: 0;
+    padding: var(--spacing-small-medium);
+    padding-right: var(--spacing-small-medium);
+  }
 }
 
 .content {
@@ -34,6 +72,13 @@
   min-height: 0;
 }
 
+/* Stack image above text on mobile */
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+}
+
 .imageContainer {
   flex: 0 0 auto;
   max-width: 70%;
@@ -42,6 +87,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Full width image on mobile */
+@media (max-width: 768px) {
+  .imageContainer {
+    max-width: 100%;
+    width: 100%;
+  }
 }
 
 .image {
@@ -59,6 +112,13 @@
   /* gap: var(--spacing-medium); */
   overflow-y: auto;
   min-height: 0;
+}
+
+/* Adjust margins on mobile */
+@media (max-width: 768px) {
+  .textContainer {
+    margin: var(--spacing-medium) 0;
+  }
 }
 
 .name {

@@ -44,3 +44,20 @@
   margin-bottom: var(--spacing-xlarge);
   width: 100%;
 }
+
+/* Responsive notes grid */
+@media (max-width: 1024px) {
+  .notesGrid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .notesGrid {
+    column-count: 1;
+  }
+
+  .buttonRow {
+    justify-content: flex-end;
+  }
+}
