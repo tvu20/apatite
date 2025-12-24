@@ -28,6 +28,9 @@ async function getGroupData(groupId: string, userId: string) {
                   };
                 };
               };
+              orderBy?: {
+                updatedAt: "asc" | "desc";
+              };
             };
           };
         }) => Promise<{

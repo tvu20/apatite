@@ -21,6 +21,9 @@ async function getBoardsData(userId: string) {
               take: 1;
             };
           };
+          orderBy?: {
+            updatedAt: "asc" | "desc";
+          };
         }) => Promise<
           Array<{
             id: string;
@@ -42,7 +45,7 @@ async function getBoardsData(userId: string) {
       },
     },
     orderBy: {
-      updatedAt: 'desc',
+      updatedAt: "desc",
     },
   });
 

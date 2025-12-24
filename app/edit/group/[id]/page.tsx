@@ -18,6 +18,7 @@ async function getGroupData(groupId: string, userId: string) {
             description: boolean;
             backgroundColor: boolean;
             textColor: boolean;
+            createdAt: boolean;
           };
         }) => Promise<{
           id: string;
@@ -25,6 +26,7 @@ async function getGroupData(groupId: string, userId: string) {
           description: string | null;
           backgroundColor: string;
           textColor: string;
+          createdAt: Date;
         } | null>;
       };
     }
@@ -36,6 +38,7 @@ async function getGroupData(groupId: string, userId: string) {
       description: true,
       backgroundColor: true,
       textColor: true,
+      createdAt: true,
     },
   });
 
