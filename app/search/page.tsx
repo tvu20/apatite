@@ -42,7 +42,7 @@ async function getBoardsData(userId: string) {
       },
     },
     orderBy: {
-      createdAt: 'desc',
+      updatedAt: 'desc',
     },
   });
 

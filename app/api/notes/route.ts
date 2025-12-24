@@ -75,6 +75,21 @@ export async function POST(request: NextRequest) {
       },
     });
 
+    // Update the board's updatedAt timestamp
+    await (
+      prisma as unknown as {
+        board: {
+          update: (args: {
+            where: { id: string };
+            data: { updatedAt: Date };
+          }) => Promise<void>;
+        };
+      }
+    ).board.update({
+      where: { id: boardId },
+      data: { updatedAt: new Date() },
+    });
+
     return NextResponse.json({ success: true, note }, { status: 201 });
   } catch (error) {
     console.error("Error creating note:", error);

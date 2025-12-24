@@ -71,6 +71,21 @@ export async function POST(request: NextRequest) {
       },
     });
 
+    // Update the group's updatedAt timestamp
+    await (
+      prisma as unknown as {
+        group: {
+          update: (args: {
+            where: { id: string };
+            data: { updatedAt: Date };
+          }) => Promise<void>;
+        };
+      }
+    ).group.update({
+      where: { id: groupId },
+      data: { updatedAt: new Date() },
+    });
+
     return NextResponse.json({ success: true, board }, { status: 201 });
   } catch (error) {
     console.error("Error creating board:", error);

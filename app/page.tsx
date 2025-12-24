@@ -34,7 +34,7 @@ export default async function Home() {
                 createdAt: boolean;
                 _count: { select: { boards: boolean } };
               };
-              orderBy: { createdAt: "desc" | "asc" };
+              orderBy: { updatedAt: "desc" | "asc" };
             }) => Promise<
               Array<{
                 id: string;
@@ -64,7 +64,7 @@ export default async function Home() {
           },
         },
         orderBy: {
-          createdAt: "desc",
+          updatedAt: "desc",
         },
       })
     : [];

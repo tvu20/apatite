@@ -62,7 +62,7 @@ async function getGroupData(groupId: string, userId: string) {
           },
         },
         orderBy: {
-          createdAt: 'desc',
+          updatedAt: 'desc',
         },
       },
     },

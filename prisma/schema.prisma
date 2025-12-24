@@ -5,15 +5,15 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model User {
   id            String    @id @default(cuid())
   name          String?
-  email         String?@unique
+  email         String?   @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
@@ -39,17 +39,17 @@ model Account {
   oauth_token_secret String?
   oauth_token        String?
 
-  user User @relation(fields:[userId], references:[id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
 
 model Session {
   id           String   @id @default(cuid())
-  sessionToken String   @unique@map("session_token")
+  sessionToken String   @unique @map("session_token")
   userId       String   @map("user_id")
   expires      DateTime
-  user         User     @relation(fields:[userId], references:[id], onDelete: Cascade)
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {
@@ -62,15 +62,16 @@ model VerificationToken {
 }
 
 model Group {
-  id            String   @id @default(cuid())
-  createdAt     DateTime @default(now())
-  name          String
-  description   String?
+  id              String   @id @default(cuid())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @default(now()) @updatedAt
+  name            String
+  description     String?
   backgroundColor String
-  textColor     String
-  userId        String
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  boards        Board[]
+  textColor       String
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  boards          Board[]
 
   @@map("groups")
 }
@@ -78,6 +79,7 @@ model Group {
 model Board {
   id          String   @id @default(cuid())
   createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
   name        String
   description String?
   groupId     String
@@ -92,6 +94,7 @@ model Board {
 model Note {
   id          String   @id @default(cuid())
   createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
   name        String
   description String?
   imageUrl    String
