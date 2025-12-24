@@ -1,0 +1,45 @@
+.container {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-small-medium);
+}
+
+.buttonRow {
+  display: flex;
+  gap: var(--spacing-small);
+  flex-wrap: wrap;
+}
+
+.backButton {
+  display: flex;
+  gap: var(--spacing-xsmall);
+  align-items: center;
+  padding: 0;
+  margin-bottom: var(--spacing-small);
+}
+
+.description {
+  font-size: var(--font-size-body-medium-large);
+}
+
+.date {
+  margin-top: var(--spacing-xx-large);
+  font-size: var(--font-size-body-small);
+  margin-bottom: var(--spacing-large);
+}
+
+.notesGrid {
+  column-count: 3;
+  column-gap: var(--spacing-xlarge);
+  width: 100%;
+}
+
+.notesGrid > * {
+  margin-bottom: var(--spacing-xlarge);
+  width: 100%;
+}

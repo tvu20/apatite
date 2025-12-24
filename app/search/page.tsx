@@ -1,4 +1,4 @@
-import SearchPageComponent from "@/components/search/SearchPage";
+import SearchPageComponent from "@/components/pages/SearchPage";
 import Layout from "@/components/ui/Layout";
 import Loader from "@/components/ui/Loader";
 import { getSession } from "@/lib/auth-server";

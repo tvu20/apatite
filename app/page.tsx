@@ -1,5 +1,5 @@
-import GroupsPage from "@/components/home/GroupsPage";
-import HomePage from "@/components/home/HomePage";
+import GroupsPage from "@/components/pages/GroupsPage";
+import HomePage from "@/components/pages/HomePage";
 import Layout from "@/components/ui/Layout";
 import { getSession } from "@/lib/auth-server";
 import prisma from "@/lib/prisma";

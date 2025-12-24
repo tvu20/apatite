@@ -71,3 +71,9 @@ h1 {
   font-size: var(--font-size-body-xsmall);
   opacity: 0.9;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
+  gap: var(--spacing-xlarge);
+}

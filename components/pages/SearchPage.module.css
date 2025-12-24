@@ -1,0 +1,9 @@
+.container {
+  width: 100%;
+}
+
+.searchContainer {
+  margin-top: var(--spacing-small-medium);
+  margin-bottom: var(--spacing-xlarge);
+}
+

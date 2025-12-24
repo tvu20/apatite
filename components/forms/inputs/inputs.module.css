@@ -270,12 +270,4 @@ input.error {
   .classRow .textInput {
     margin-bottom: var(--spacing-medium);
   }
-
-  .weaponSection {
-    grid-template-columns: 1fr;
-  }
-
-  .weaponSection > div {
-    margin-bottom: 0;
-  }
 }
