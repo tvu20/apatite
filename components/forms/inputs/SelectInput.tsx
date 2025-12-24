@@ -1,7 +1,13 @@
-import { FieldValues, Path, UseFormRegister } from "react-hook-form";
+import {
+  FieldValues,
+  Path,
+  UseFormRegister,
+  UseFormWatch,
+} from "react-hook-form";
 import styles from "./inputs.module.css";
 type SelectInputProps<T extends FieldValues> = {
   register: UseFormRegister<T>;
+  watch: UseFormWatch<T>;
   name: Path<T>;
   label: string;
   children: React.ReactNode;
@@ -12,6 +18,7 @@ type SelectInputProps<T extends FieldValues> = {
 
 const SelectInput = <T extends FieldValues>({
   register,
+  watch,
   name,
   label,
   children,
@@ -19,6 +26,9 @@ const SelectInput = <T extends FieldValues>({
   required,
   error,
 }: SelectInputProps<T>) => {
+  const value = watch(name);
+  const isEmpty = value === "";
+
   return (
     <div className={styles.selectInput}>
       <label htmlFor={name}>{label}</label>
@@ -30,7 +40,9 @@ const SelectInput = <T extends FieldValues>({
             : undefined,
         })}
         style={{ width }}
-        className={error ? styles.error : ""}
+        className={`${error ? styles.error : ""} ${
+          isEmpty ? styles.emptySelect : ""
+        }`.trim()}
       >
         {children}
       </select>

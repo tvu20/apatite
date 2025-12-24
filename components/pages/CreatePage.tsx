@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import CreateBoardForm from "@/components/forms/CreateBoardForm";
 import CreateGroupForm from "@/components/forms/CreateGroupForm";
+import { CaretDownIcon } from "@phosphor-icons/react";
+import { useState } from "react";
 import styles from "./CreatePage.module.css";
 
 type Group = {
@@ -19,16 +20,21 @@ export default function CreatePage({ groups }: CreatePageProps) {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>create a board</h1>
-      <div className={styles.selectContainer}>
-        <select
-          value={selectedType}
-          onChange={(e) => setSelectedType(e.target.value as "board" | "group")}
-          className={styles.select}
-        >
-          <option value="board">board</option>
-          <option value="group">group</option>
-        </select>
+      <div className={styles.header}>
+        <h1 className={styles.title}>create a</h1>
+        <div className={styles.selectContainer}>
+          <select
+            value={selectedType}
+            onChange={(e) =>
+              setSelectedType(e.target.value as "board" | "group")
+            }
+            className={styles.select}
+          >
+            <option value="board">board</option>
+            <option value="group">group</option>
+          </select>
+          <CaretDownIcon className={styles.selectIcon} size={20} />
+        </div>
       </div>
       {selectedType === "board" ? (
         <CreateBoardForm groups={groups} />
@@ -38,4 +44,3 @@ export default function CreatePage({ groups }: CreatePageProps) {
     </div>
   );
 }
-

@@ -77,3 +77,61 @@ h1 {
   grid-template-columns: repeat(3, minmax(200px, 1fr));
   gap: var(--spacing-xlarge);
 }
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+}
+
+.form-buttons {
+  display: flex;
+  gap: var(--spacing-small-medium);
+  justify-content: flex-end;
+  margin-top: var(--spacing-medium);
+  margin-bottom: var(--spacing-xlarge);
+}
+
+.form-edit-buttons {
+  display: flex;
+  gap: var(--spacing-small-medium);
+}
+
+.cancel-button,
+.submit-button,
+.delete-button {
+  font-size: var(--font-size-body-medium-large);
+  padding: var(--spacing-small) var(--spacing-medium-large);
+  border-radius: var(--card-border-radius);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cancel-button {
+  border: 1px solid var(--primary-theme-color);
+  opacity: 0.8;
+}
+
+.cancel-button:hover {
+  background-color: #d1d5db;
+}
+
+.delete-button {
+  background-color: var(--primary-error-color);
+  color: #ffffff;
+}
+
+.delete-button:hover {
+  background-color: #1f2937;
+}
+
+.submit-button {
+  background-color: var(--primary-theme-color);
+  color: #ffffff;
+}
+
+.submit-button:hover {
+  background-color: #1f2937;
+}

@@ -3,14 +3,13 @@
 import SelectInput from "@/components/forms/inputs/SelectInput";
 import TextAreaInput from "@/components/forms/inputs/TextAreaInput";
 import TextInput from "@/components/forms/inputs/TextInput";
-import { Board } from "@/components/types";
 import ConfirmModal from "@/components/modals/ConfirmModal";
+import { Board } from "@/components/types";
 import Loader from "@/components/ui/Loader";
 import Snackbar from "@/components/ui/Snackbar";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import styles from "./EditBoardForm.module.css";
 
 type Group = {
   id: string;
@@ -36,6 +35,7 @@ export default function EditBoardForm({ board, groups }: EditBoardFormProps) {
   const [isDeleting, setIsDeleting] = useState(false);
   const {
     register,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
@@ -114,13 +114,14 @@ export default function EditBoardForm({ board, groups }: EditBoardFormProps) {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
         <TextInput
           register={register}
           name="name"
           label="Name"
           required
           fullWidth
+          placeholder="Enter board name"
           error={errors.name?.message}
         />
         <TextAreaInput
@@ -128,10 +129,12 @@ export default function EditBoardForm({ board, groups }: EditBoardFormProps) {
           name="description"
           label="Description"
           width="100%"
+          placeholder="Lorem ipsul dolor"
           error={errors.description?.message}
         />
         <SelectInput
           register={register}
+          watch={watch}
           name="group"
           label="Group"
           required
@@ -144,23 +147,26 @@ export default function EditBoardForm({ board, groups }: EditBoardFormProps) {
             </option>
           ))}
         </SelectInput>
-        <div className={styles.buttons}>
+        <div
+          className="form-buttons"
+          style={{ justifyContent: "space-between" }}
+        >
           <button
             type="button"
             onClick={() => setShowDeleteModal(true)}
-            className={styles.deleteButton}
+            className="delete-button"
           >
             Delete
           </button>
-          <div className={styles.rightButtons}>
+          <div className="form-edit-buttons">
             <button
               type="button"
               onClick={handleCancel}
-              className={styles.cancelButton}
+              className="cancel-button"
             >
               Cancel
             </button>
-            <button type="submit" className={styles.updateButton}>
+            <button type="submit" className="submit-button">
               Update
             </button>
           </div>
@@ -175,7 +181,7 @@ export default function EditBoardForm({ board, groups }: EditBoardFormProps) {
       )}
       <ConfirmModal
         isOpen={showDeleteModal}
-        title="Delete Board"
+        title="delete board"
         message="Are you sure you want to delete this board? This action cannot be undone and will also delete all notes in this board."
         confirmText="Delete"
         cancelText="Cancel"
@@ -185,4 +191,3 @@ export default function EditBoardForm({ board, groups }: EditBoardFormProps) {
     </>
   );
 }
-

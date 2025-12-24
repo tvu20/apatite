@@ -8,7 +8,6 @@ import Snackbar from "@/components/ui/Snackbar";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import styles from "./CreateGroupForm.module.css";
 
 type FormData = {
   name: string;
@@ -88,13 +87,14 @@ export default function CreateGroupForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
         <TextInput
           register={register}
           name="name"
           label="Name"
           required
           fullWidth
+          placeholder="Enter group name"
           error={errors.name?.message}
         />
         <TextAreaInput
@@ -102,6 +102,7 @@ export default function CreateGroupForm() {
           name="description"
           label="Description"
           width="100%"
+          placeholder="Lorem ipsul dolor"
           error={errors.description?.message}
         />
         <ColorInput
@@ -118,15 +119,15 @@ export default function CreateGroupForm() {
           label="Text Color"
           error={errors.textColor?.message}
         />
-        <div className={styles.buttons}>
+        <div className="form-buttons">
           <button
             type="button"
             onClick={handleCancel}
-            className={styles.cancelButton}
+            className="cancel-button"
           >
             Cancel
           </button>
-          <button type="submit" className={styles.createButton}>
+          <button type="submit" className="submit-button">
             Create
           </button>
         </div>
@@ -141,4 +142,3 @@ export default function CreateGroupForm() {
     </>
   );
 }
-

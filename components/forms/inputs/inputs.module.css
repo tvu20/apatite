@@ -1,24 +1,15 @@
 /* ALL INPUTS */
 
 input.error {
-  border-bottom: 1px solid var(--snackbar-error-color);
+  border-bottom: 1px solid var(--primary-error-color);
 }
 
 .errorMessage {
+  margin-top: var(--spacing-xsmall);
   height: 5px;
-  color: var(--snackbar-error-color);
+  color: var(--primary-error-color);
   font-weight: 400;
   font-size: var(--font-size-body-xsmall);
-}
-
-/* SUBMIT INPUT */
-
-.submitInput {
-  font-size: var(--font-size-body-medium);
-  padding: var(--spacing-small) var(--spacing-medium);
-  margin-top: var(--spacing-xx-large);
-  margin-bottom: 300px;
-  /* margin-top: var(--spacing-medium); */
 }
 
 /* TEXT INPUT */
@@ -29,24 +20,30 @@ input.error {
   margin: var(--spacing-medium) var(--spacing-medium) var(--spacing-xx-small) 0;
 }
 
-.textInput label {
-  font-size: var(--font-size-body-xsmall);
-  text-transform: uppercase;
+.textInput label,
+.textAreaInput label,
+.selectInput label,
+.colorInput label {
+  font-size: var(--font-size-body-small);
+  margin-bottom: var(--spacing-xsmall);
+  /* text-transform: uppercase; */
 }
 
 .textInput input {
+  font-family: var(--body-font);
   font-weight: 300;
   width: 300px;
   max-width: 70vw;
   height: 30px;
   padding: var(--spacing-xx-small) 0;
   border: none;
-  border-bottom: 1px solid var(--content-box-border-color);
-  font-size: var(--font-size-body-medium);
+  border-bottom: 1px solid var(--primary-border-color);
+  font-size: var(--font-size-body-medium-large);
 }
 
 .textInput input::placeholder {
   opacity: 0.7;
+  font-weight: 300;
 }
 
 /* TEXT INPUT */
@@ -57,20 +54,15 @@ input.error {
   margin: var(--spacing-medium) var(--spacing-medium) var(--spacing-xx-small) 0;
 }
 
-.textAreaInput label {
-  font-size: var(--font-size-body-xsmall);
-  text-transform: uppercase;
-  margin-bottom: var(--spacing-small);
-}
-
 .textAreaInput textarea {
+  font-family: var(--body-font);
   font-weight: 300;
   width: 100%;
-  height: 300px;
+  height: 200px;
   padding: var(--spacing-xx-small) 0;
   border: none;
-  border-bottom: 1px solid var(--content-box-border-color);
-  font-size: var(--font-size-body-medium);
+  border-bottom: 1px solid var(--primary-border-color);
+  font-size: var(--font-size-body-medium-large);
 }
 
 .textAreaInput textarea::placeholder {
@@ -85,15 +77,9 @@ input.error {
   margin: var(--spacing-medium) var(--spacing-medium) var(--spacing-xx-small) 0;
 }
 
-.colorInput label {
-  font-size: var(--font-size-body-xsmall);
-  text-transform: uppercase;
-  margin-bottom: var(--spacing-small);
-}
-
 .colorInputContainer {
   display: flex;
-  gap: 0.5rem;
+  gap: var(--spacing-small-medium);
   align-items: center;
 }
 
@@ -124,8 +110,8 @@ input.error {
   height: 30px;
   padding: var(--spacing-xx-small) 0;
   border: none;
-  border-bottom: 1px solid var(--content-box-border-color);
-  font-size: var(--font-size-body-medium);
+  border-bottom: 1px solid var(--primary-border-color);
+  font-size: var(--font-size-body-medium-large);
 }
 
 .colorTextInput::placeholder {
@@ -140,92 +126,23 @@ input.error {
   margin: var(--spacing-medium) var(--spacing-medium) var(--spacing-xx-small) 0;
 }
 
-.selectInput label {
-  font-size: var(--font-size-body-xsmall);
-  text-transform: uppercase;
-  margin-bottom: 1px;
-  margin-left: 4px;
-}
-
 .selectInput select {
-  /* padding: 8px;
-    border-radius: 4px;
-    border: 1px solid var(--border-color);
-    background-color: var(--background-color);
-    color: var(--text-color);
-    font-size: 14px; */
+  font-family: var(--body-font);
   font-weight: 300;
   width: 150px;
   max-width: 70vw;
   padding: var(--spacing-xsmall) 0;
   border: none;
-  border-bottom: 1px solid var(--content-box-border-color);
-  font-size: var(--font-size-body-medium);
+  border-bottom: 1px solid var(--primary-border-color);
+  font-size: var(--font-size-body-medium-large);
 }
 
 .selectInput select.error {
-  border-bottom: 1px solid var(--snackbar-error-color);
+  border-bottom: 1px solid var(--primary-error-color);
 }
 
-/* multiselect */
-
-.multiSelectInput {
-  display: flex;
-  flex-direction: column;
-  margin: 0 var(--spacing-medium) var(--spacing-xx-small) 0;
-}
-
-.multiSelectInput label {
-  font-size: var(--font-size-body-xsmall);
-  text-transform: uppercase;
-  margin-bottom: var(--spacing-xsmall);
-}
-
-.multiSelectInput select {
-  height: 100px;
-  border: 1px solid var(--content-box-separator-color);
-}
-
-.multiSelectInput option {
-  padding: 4px 8px;
-  font-weight: 300;
-}
-
-.multiSelectInput option:checked {
-  background-color: var(--secondary-gray-color);
-}
-
-/* CHECKBOX INPUT */
-
-.checkboxInput {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-right: var(--spacing-medium);
-}
-
-.checkboxInput label {
-  font-weight: 300;
-  font-size: var(--font-size-body-medium);
-  margin-top: -4px;
-}
-
-.checkboxInput input {
-  margin-right: var(--spacing-xsmall);
-  width: 20px;
-  height: 20px;
-}
-
-/* IMAGE ARRAY INPUT */
-
-.arrayRow {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.arrayRow .textInput {
-  margin-top: 0;
+.selectInput select.emptySelect {
+  opacity: 0.7;
 }
 
 /* MEDIA QUERIES */

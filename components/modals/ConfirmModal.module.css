@@ -60,11 +60,11 @@
 }
 
 .confirmButton {
-  background-color: #dc2626;
+  background-color: var(--primary-error-color);
+  /* background-color: #dc2626; */
   color: #ffffff;
 }
 
 .confirmButton:hover {
   background-color: #b91c1c;
 }
-

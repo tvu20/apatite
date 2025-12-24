@@ -2,8 +2,8 @@
 
 import TextAreaInput from "@/components/forms/inputs/TextAreaInput";
 import TextInput from "@/components/forms/inputs/TextInput";
-import { Note } from "@/components/types";
 import ConfirmModal from "@/components/modals/ConfirmModal";
+import { Note } from "@/components/types";
 import Loader from "@/components/ui/Loader";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -160,6 +160,7 @@ export default function AddNoteForm({
           label="Name"
           required
           fullWidth
+          placeholder="Example note"
           error={errors.name?.message}
         />
         <TextInput
@@ -168,6 +169,7 @@ export default function AddNoteForm({
           label="Image URL"
           required
           fullWidth
+          placeholder="https://example.com/image.jpg"
           error={errors.imageUrl?.message}
           onChange={(e) => setImageUrl(e.target.value)}
         />
@@ -188,12 +190,14 @@ export default function AddNoteForm({
           name="link"
           label="Link"
           fullWidth
+          placeholder="https://example.com"
           error={errors.link?.message}
         />
         <TextAreaInput
           register={register}
           name="description"
           label="Description"
+          placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           width="100%"
           error={errors.description?.message}
         />
@@ -202,20 +206,16 @@ export default function AddNoteForm({
             <button
               type="button"
               onClick={() => setShowDeleteModal(true)}
-              className={styles.deleteButton}
+              className="delete-button"
             >
               Delete
             </button>
           )}
           <div className={styles.rightButtons}>
-            <button
-              type="button"
-              onClick={onCancel}
-              className={styles.cancelButton}
-            >
+            <button type="button" onClick={onCancel} className="cancel-button">
               Cancel
             </button>
-            <button type="submit" className={styles.createButton}>
+            <button type="submit" className="submit-button">
               {isEditing ? "Update" : "Create"}
             </button>
           </div>
@@ -224,7 +224,7 @@ export default function AddNoteForm({
       {isEditing && (
         <ConfirmModal
           isOpen={showDeleteModal}
-          title="Delete Note"
+          title="delete note"
           message="Are you sure you want to delete this note? This action cannot be undone."
           confirmText="Delete"
           cancelText="Cancel"
@@ -235,4 +235,3 @@ export default function AddNoteForm({
     </>
   );
 }
-

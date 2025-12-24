@@ -3,14 +3,13 @@
 import ColorInput from "@/components/forms/inputs/ColorInput";
 import TextAreaInput from "@/components/forms/inputs/TextAreaInput";
 import TextInput from "@/components/forms/inputs/TextInput";
-import { Group } from "@/components/types";
 import ConfirmModal from "@/components/modals/ConfirmModal";
+import { Group } from "@/components/types";
 import Loader from "@/components/ui/Loader";
 import Snackbar from "@/components/ui/Snackbar";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import styles from "./EditGroupForm.module.css";
 
 type FormData = {
   name: string;
@@ -113,13 +112,14 @@ export default function EditGroupForm({ group }: EditGroupFormProps) {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
         <TextInput
           register={register}
           name="name"
           label="Name"
           required
           fullWidth
+          placeholder="Enter group name"
           error={errors.name?.message}
         />
         <TextAreaInput
@@ -127,6 +127,7 @@ export default function EditGroupForm({ group }: EditGroupFormProps) {
           name="description"
           label="Description"
           width="100%"
+          placeholder="Lorem ipsul dolor"
           error={errors.description?.message}
         />
         <ColorInput
@@ -147,23 +148,26 @@ export default function EditGroupForm({ group }: EditGroupFormProps) {
           error={errors.textColor?.message}
           defaultValue={group.textColor}
         />
-        <div className={styles.buttons}>
+        <div
+          className="form-buttons"
+          style={{ justifyContent: "space-between" }}
+        >
           <button
             type="button"
             onClick={() => setShowDeleteModal(true)}
-            className={styles.deleteButton}
+            className="delete-button"
           >
             Delete
           </button>
-          <div className={styles.rightButtons}>
+          <div className="form-edit-buttons">
             <button
               type="button"
               onClick={handleCancel}
-              className={styles.cancelButton}
+              className="cancel-button"
             >
               Cancel
             </button>
-            <button type="submit" className={styles.updateButton}>
+            <button type="submit" className="submit-button">
               Update
             </button>
           </div>
@@ -178,7 +182,7 @@ export default function EditGroupForm({ group }: EditGroupFormProps) {
       )}
       <ConfirmModal
         isOpen={showDeleteModal}
-        title="Delete Group"
+        title="delete group"
         message="Are you sure you want to delete this group? This action cannot be undone and will also delete all boards and notes in this group."
         confirmText="Delete"
         cancelText="Cancel"
@@ -188,4 +192,3 @@ export default function EditGroupForm({ group }: EditGroupFormProps) {
     </>
   );
 }
-

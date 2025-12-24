@@ -103,7 +103,7 @@ export default function BoardDetailPage({ board }: BoardDetailPageProps) {
       </div>
       <FormModal
         isOpen={showAddNoteModal}
-        title={editingNote ? "Edit Note" : "Add a Note"}
+        title={editingNote ? "edit a note" : "create a note"}
         onClose={() => {
           setShowAddNoteModal(false);
           setEditingNote(null);

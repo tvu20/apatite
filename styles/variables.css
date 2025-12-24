@@ -4,6 +4,7 @@ body {
   --primary-background-color: #fff;
   --primary-text-color: #171717;
   --primary-border-color: #171717;
+  --primary-error-color: #bf3f61;
 
   /* fonts */
   --logo-font: var(--font-poiret-one);

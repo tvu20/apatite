@@ -8,7 +8,6 @@ import Snackbar from "@/components/ui/Snackbar";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import styles from "./CreateBoardForm.module.css";
 
 type Group = {
   id: string;
@@ -31,6 +30,7 @@ export default function CreateBoardForm({ groups }: CreateBoardFormProps) {
   const [showSuccess, setShowSuccess] = useState(false);
   const {
     register,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
@@ -81,13 +81,14 @@ export default function CreateBoardForm({ groups }: CreateBoardFormProps) {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
         <TextInput
           register={register}
           name="name"
           label="Name"
           required
           fullWidth
+          placeholder="Enter board name"
           error={errors.name?.message}
         />
         <TextAreaInput
@@ -95,10 +96,12 @@ export default function CreateBoardForm({ groups }: CreateBoardFormProps) {
           name="description"
           label="Description"
           width="100%"
+          placeholder="Lorem ipsul dolor"
           error={errors.description?.message}
         />
         <SelectInput
           register={register}
+          watch={watch}
           name="group"
           label="Group"
           required
@@ -111,15 +114,15 @@ export default function CreateBoardForm({ groups }: CreateBoardFormProps) {
             </option>
           ))}
         </SelectInput>
-        <div className={styles.buttons}>
+        <div className="form-buttons">
           <button
             type="button"
             onClick={handleCancel}
-            className={styles.cancelButton}
+            className="cancel-button"
           >
             Cancel
           </button>
-          <button type="submit" className={styles.createButton}>
+          <button type="submit" className="submit-button">
             Create
           </button>
         </div>
@@ -134,4 +137,3 @@ export default function CreateBoardForm({ groups }: CreateBoardFormProps) {
     </>
   );
 }
-

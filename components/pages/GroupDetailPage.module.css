@@ -33,6 +33,7 @@
 .description {
   font-size: var(--font-size-body-medium-large);
   margin-bottom: var(--spacing-xxx-large);
+  font-weight: 300;
 }
 
 .boardsContainer {
