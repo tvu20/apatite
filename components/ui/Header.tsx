@@ -1,5 +1,11 @@
 "use client";
 
+import {
+  MagnifyingGlassIcon,
+  SignInIcon,
+  SignOutIcon,
+  StackPlusIcon,
+} from "@phosphor-icons/react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
@@ -46,24 +52,30 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      <button onClick={handleHomeClick} className={styles.homeButton}>
-        apatite
-      </button>
-      <button onClick={handleSearchClick} className={styles.button}>
-        search
-      </button>
-      <button onClick={handleCreateClick} className={styles.button}>
-        create
-      </button>
-      {session?.user ? (
-        <button onClick={handleSignOut} className={styles.button}>
-          log out
+      <div className={styles.headerLeft}>
+        <button onClick={handleHomeClick} className={styles.homeButton}>
+          apatite.
         </button>
-      ) : (
-        <button onClick={handleSignIn} className={styles.button}>
-          login
-        </button>
-      )}
+      </div>
+      <div className={styles.headerRight}>
+        {session?.user ? (
+          <>
+            <button onClick={handleSearchClick} className={styles.button}>
+              <MagnifyingGlassIcon className={styles.icon} size={28} />
+            </button>
+            <button onClick={handleCreateClick} className={styles.button}>
+              <StackPlusIcon className={styles.icon} size={28} />
+            </button>
+            <button onClick={handleSignOut} className={styles.button}>
+              <SignOutIcon className={styles.icon} size={28} />
+            </button>
+          </>
+        ) : (
+          <button onClick={handleSignIn} className={styles.button}>
+            <SignInIcon className={styles.icon} size={28} />
+          </button>
+        )}
+      </div>
     </header>
   );
 }

@@ -1,4 +1,4 @@
-import GroupsList from "@/components/home/GroupsList";
+import GroupsPage from "@/components/home/GroupsPage";
 import HomePage from "@/components/home/HomePage";
 import Layout from "@/components/ui/Layout";
 import { getSession } from "@/lib/auth-server";
@@ -28,15 +28,22 @@ export default async function Home() {
               select: {
                 id: boolean;
                 name: boolean;
+                description: boolean;
                 backgroundColor: boolean;
                 textColor: boolean;
+                createdAt: boolean;
+                _count: { select: { boards: boolean } };
               };
+              orderBy: { createdAt: "desc" | "asc" };
             }) => Promise<
               Array<{
                 id: string;
                 name: string;
+                description: string | null;
                 backgroundColor: string;
                 textColor: string;
+                createdAt: Date;
+                _count: { boards: number };
               }>
             >;
           };
@@ -46,15 +53,25 @@ export default async function Home() {
         select: {
           id: true,
           name: true,
+          description: true,
           backgroundColor: true,
           textColor: true,
+          createdAt: true,
+          _count: {
+            select: {
+              boards: true,
+            },
+          },
+        },
+        orderBy: {
+          createdAt: "desc",
         },
       })
     : [];
 
   return (
     <Layout>
-      <GroupsList groups={groups} />
+      <GroupsPage groups={groups} />
     </Layout>
   );
 }

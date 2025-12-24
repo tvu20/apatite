@@ -41,6 +41,9 @@ async function getBoardsData(userId: string) {
         take: 1,
       },
     },
+    orderBy: {
+      createdAt: 'desc',
+    },
   });
 
   return boards;

@@ -23,4 +23,8 @@ export type Group = {
   description?: string | null;
   backgroundColor: string;
   textColor: string;
+  createdAt: Date | string;
+  _count?: {
+    boards: number;
+  };
 };
