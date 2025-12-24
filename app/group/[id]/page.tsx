@@ -1,5 +1,4 @@
 import Layout from "@/components/Layout";
-import PageContent from "@/components/PageContent";
 import GroupDetail from "@/components/group/GroupDetail";
 import Loader from "@/components/ui/Loader";
 import { getSession } from "@/lib/auth-server";
@@ -107,11 +106,9 @@ export default async function GroupPage({
 
   return (
     <Layout>
-      <PageContent>
-        <Suspense fallback={<Loader />}>
-          <GroupContent groupId={id} userId={user.id} />
-        </Suspense>
-      </PageContent>
+      <Suspense fallback={<Loader />}>
+        <GroupContent groupId={id} userId={user.id} />
+      </Suspense>
     </Layout>
   );
 }

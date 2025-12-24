@@ -1,5 +1,4 @@
 import Layout from "@/components/Layout";
-import PageContent from "@/components/PageContent";
 import EditPage from "@/components/edit/EditPage";
 import Loader from "@/components/ui/Loader";
 import { getSession } from "@/lib/auth-server";
@@ -108,11 +107,9 @@ export default async function EditBoardPage({
 
   return (
     <Layout>
-      <PageContent>
-        <Suspense fallback={<Loader />}>
-          <EditContent boardId={id} userId={user.id} />
-        </Suspense>
-      </PageContent>
+      <Suspense fallback={<Loader />}>
+        <EditContent boardId={id} userId={user.id} />
+      </Suspense>
     </Layout>
   );
 }

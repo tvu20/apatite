@@ -1,16 +1,10 @@
+import { Board } from "@/components/types";
 import EditBoardForm from "./EditBoardForm";
 import styles from "./EditPage.module.css";
 
 type Group = {
   id: string;
   name: string;
-};
-
-type Board = {
-  id: string;
-  name: string;
-  description: string | null;
-  groupId: string;
 };
 
 type EditPageProps = {

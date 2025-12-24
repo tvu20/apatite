@@ -1,5 +1,6 @@
 "use client";
 
+import { Board, Note } from "@/components/types";
 import FormModal from "@/components/ui/FormModal";
 import Snackbar from "@/components/ui/Snackbar";
 import { useRouter } from "next/navigation";
@@ -8,25 +9,6 @@ import AddNoteForm from "./AddNoteForm";
 import styles from "./BoardDetail.module.css";
 import NoteDetailModal from "./NoteDetailModal";
 import NoteImage from "./NoteImage";
-
-type Note = {
-  id: string;
-  name: string;
-  description: string | null;
-  imageUrl: string;
-  link: string | null;
-};
-
-type Board = {
-  id: string;
-  name: string;
-  description: string | null;
-  notes: Note[];
-  group: {
-    id: string;
-    name: string;
-  };
-};
 
 type BoardDetailProps = {
   board: Board;
@@ -41,7 +23,7 @@ export default function BoardDetail({ board }: BoardDetailProps) {
   const [editingNote, setEditingNote] = useState<Note | null>(null);
 
   const handleReturnToGroup = () => {
-    router.push(`/group/${board.group.id}`);
+    router.push(`/group/${board.group?.id}`);
   };
 
   const handleEditBoard = () => {
@@ -77,7 +59,7 @@ export default function BoardDetail({ board }: BoardDetailProps) {
     <div className={styles.container}>
       <div className={styles.buttonRow}>
         <button onClick={handleReturnToGroup} className={styles.returnButton}>
-          Return to {board.group.name}
+          Return to {board.group?.name}
         </button>
         <button onClick={handleEditBoard} className={styles.editButton}>
           edit board
@@ -91,7 +73,7 @@ export default function BoardDetail({ board }: BoardDetailProps) {
         <p className={styles.description}>{board.description}</p>
       )}
       <div className={styles.notesContainer}>
-        {board.notes.map((note) => (
+        {board.notes?.map((note) => (
           <div
             key={note.id}
             onClick={() => handleNoteClick(note)}

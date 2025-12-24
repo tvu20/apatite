@@ -3,6 +3,7 @@
 import ColorInput from "@/components/forms/inputs/ColorInput";
 import TextAreaInput from "@/components/forms/inputs/TextAreaInput";
 import TextInput from "@/components/forms/inputs/TextInput";
+import { Group } from "@/components/types";
 import ConfirmModal from "@/components/ui/ConfirmModal";
 import Loader from "@/components/ui/Loader";
 import Snackbar from "@/components/ui/Snackbar";
@@ -10,14 +11,6 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./EditGroupForm.module.css";
-
-type Group = {
-  id: string;
-  name: string;
-  description: string | null;
-  backgroundColor: string;
-  textColor: string;
-};
 
 type FormData = {
   name: string;

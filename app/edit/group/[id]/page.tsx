@@ -1,5 +1,4 @@
 import Layout from "@/components/Layout";
-import PageContent from "@/components/PageContent";
 import EditGroupPage from "@/components/edit/EditGroupPage";
 import Loader from "@/components/ui/Loader";
 import { getSession } from "@/lib/auth-server";
@@ -81,11 +80,9 @@ export default async function EditGroupPageRoute({
 
   return (
     <Layout>
-      <PageContent>
-        <Suspense fallback={<Loader />}>
-          <EditContent groupId={id} userId={user.id} />
-        </Suspense>
-      </PageContent>
+      <Suspense fallback={<Loader />}>
+        <EditContent groupId={id} userId={user.id} />
+      </Suspense>
     </Layout>
   );
 }

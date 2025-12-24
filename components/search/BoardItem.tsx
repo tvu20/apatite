@@ -1,13 +1,8 @@
 "use client";
 
+import { Board } from "@/components/types";
 import { useRouter } from "next/navigation";
 import styles from "./BoardItem.module.css";
-
-type Board = {
-  id: string;
-  name: string;
-  notes: Array<{ id: string; imageUrl: string }>;
-};
 
 type BoardItemProps = {
   board: Board;
@@ -15,7 +10,7 @@ type BoardItemProps = {
 
 export default function BoardItem({ board }: BoardItemProps) {
   const router = useRouter();
-  const firstNoteImage = board.notes[0]?.imageUrl || null;
+  const firstNoteImage = board.notes?.[0]?.imageUrl || null;
 
   const handleClick = () => {
     router.push(`/board/${board.id}`);

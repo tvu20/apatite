@@ -1,14 +1,7 @@
 "use client";
 
+import { Note } from "@/components/types";
 import styles from "./NoteDetailModal.module.css";
-
-type Note = {
-  id: string;
-  name: string;
-  description: string | null;
-  imageUrl: string;
-  link: string | null;
-};
 
 type NoteDetailModalProps = {
   note: Note | null;

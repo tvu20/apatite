@@ -1,15 +1,10 @@
 "use client";
 
 import SearchInput from "@/components/forms/inputs/SearchInput";
+import { Board } from "@/components/types";
 import { useEffect, useState } from "react";
 import BoardItem from "./BoardItem";
 import styles from "./SearchResults.module.css";
-
-type Board = {
-  id: string;
-  name: string;
-  notes: Array<{ id: string; imageUrl: string }>;
-};
 
 type SearchResultsProps = {
   boards: Board[];

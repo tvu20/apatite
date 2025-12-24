@@ -3,6 +3,7 @@
 import SelectInput from "@/components/forms/inputs/SelectInput";
 import TextAreaInput from "@/components/forms/inputs/TextAreaInput";
 import TextInput from "@/components/forms/inputs/TextInput";
+import { Board } from "@/components/types";
 import ConfirmModal from "@/components/ui/ConfirmModal";
 import Loader from "@/components/ui/Loader";
 import Snackbar from "@/components/ui/Snackbar";
@@ -14,13 +15,6 @@ import styles from "./EditBoardForm.module.css";
 type Group = {
   id: string;
   name: string;
-};
-
-type Board = {
-  id: string;
-  name: string;
-  description: string | null;
-  groupId: string;
 };
 
 type FormData = {
@@ -48,7 +42,7 @@ export default function EditBoardForm({ board, groups }: EditBoardFormProps) {
     defaultValues: {
       name: board.name,
       description: board.description || "",
-      group: board.groupId,
+      group: board.group?.id,
     },
   });
 

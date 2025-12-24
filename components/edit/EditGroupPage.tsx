@@ -1,13 +1,6 @@
+import { Group } from "@/components/types";
 import EditGroupForm from "./EditGroupForm";
 import styles from "./EditGroupPage.module.css";
-
-type Group = {
-  id: string;
-  name: string;
-  description: string | null;
-  backgroundColor: string;
-  textColor: string;
-};
 
 type EditGroupPageProps = {
   group: Group;

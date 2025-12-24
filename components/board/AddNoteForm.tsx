@@ -2,19 +2,12 @@
 
 import TextAreaInput from "@/components/forms/inputs/TextAreaInput";
 import TextInput from "@/components/forms/inputs/TextInput";
+import { Note } from "@/components/types";
 import ConfirmModal from "@/components/ui/ConfirmModal";
 import Loader from "@/components/ui/Loader";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./AddNoteForm.module.css";
-
-type Note = {
-  id: string;
-  name: string;
-  description: string | null;
-  imageUrl: string;
-  link: string | null;
-};
 
 type FormData = {
   name: string;

@@ -1,5 +1,4 @@
 import Layout from "@/components/Layout";
-import PageContent from "@/components/PageContent";
 import SearchResults from "@/components/search/SearchResults";
 import Loader from "@/components/ui/Loader";
 import { getSession } from "@/lib/auth-server";
@@ -70,12 +69,9 @@ export default async function SearchPage() {
 
   return (
     <Layout>
-      <PageContent>
-        <Suspense fallback={<Loader />}>
-          <BoardsContent userId={user.id} />
-        </Suspense>
-      </PageContent>
+      <Suspense fallback={<Loader />}>
+        <BoardsContent userId={user.id} />
+      </Suspense>
     </Layout>
   );
 }
-

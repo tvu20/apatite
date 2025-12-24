@@ -1,7 +1,6 @@
 import GroupsContent from "@/components/home/GroupsContent";
 import HomePage from "@/components/home/HomePage";
 import Layout from "@/components/Layout";
-import PageContent from "@/components/PageContent";
 import { getSession } from "@/lib/auth-server";
 import prisma from "@/lib/prisma";
 
@@ -11,19 +10,15 @@ export default async function Home() {
   if (!session?.user?.email) {
     return (
       <Layout>
-        <PageContent title="Superblog">
-          <HomePage />
-        </PageContent>
+        <HomePage />
       </Layout>
     );
   }
 
-  // Fetch user first
   const user = await prisma.user.findUnique({
     where: { email: session.user.email || undefined },
   });
 
-  // Fetch groups for this user
   const groups = user
     ? await (
         prisma as unknown as {
@@ -59,9 +54,7 @@ export default async function Home() {
 
   return (
     <Layout>
-      <PageContent title="Superblog">
-        <GroupsContent groups={groups} />
-      </PageContent>
+      <GroupsContent groups={groups} />
     </Layout>
   );
 }

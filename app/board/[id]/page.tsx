@@ -1,5 +1,4 @@
 import Layout from "@/components/Layout";
-import PageContent from "@/components/PageContent";
 import BoardDetail from "@/components/board/BoardDetail";
 import Loader from "@/components/ui/Loader";
 import { getSession } from "@/lib/auth-server";
@@ -27,6 +26,8 @@ async function getBoardData(boardId: string, userId: string) {
               select: {
                 id: true;
                 name: true;
+                backgroundColor: true;
+                textColor: true;
               };
             };
           };
@@ -44,6 +45,8 @@ async function getBoardData(boardId: string, userId: string) {
           group: {
             id: string;
             name: string;
+            backgroundColor: string;
+            textColor: string;
           };
         } | null>;
       };
@@ -64,6 +67,8 @@ async function getBoardData(boardId: string, userId: string) {
         select: {
           id: true,
           name: true,
+          backgroundColor: true,
+          textColor: true,
         },
       },
     },
@@ -110,11 +115,9 @@ export default async function BoardPage({
 
   return (
     <Layout>
-      <PageContent>
-        <Suspense fallback={<Loader />}>
-          <BoardContent boardId={id} userId={user.id} />
-        </Suspense>
-      </PageContent>
+      <Suspense fallback={<Loader />}>
+        <BoardContent boardId={id} userId={user.id} />
+      </Suspense>
     </Layout>
   );
 }

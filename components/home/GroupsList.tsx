@@ -1,14 +1,8 @@
 "use client";
 
+import { Group } from "@/components/types";
 import { useRouter } from "next/navigation";
 import styles from "./GroupsList.module.css";
-
-type Group = {
-  id: string;
-  name: string;
-  backgroundColor: string;
-  textColor: string;
-};
 
 type GroupsListProps = {
   groups: Group[];

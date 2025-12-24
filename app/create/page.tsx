@@ -1,6 +1,5 @@
 import Layout from "@/components/Layout";
-import PageContent from "@/components/PageContent";
-import CreatePageComponent from "@/components/create/CreatePage";
+import CreatePageContent from "@/components/create/CreatePage";
 import Loader from "@/components/ui/Loader";
 import { getSession } from "@/lib/auth-server";
 import prisma from "@/lib/prisma";
@@ -39,7 +38,7 @@ async function getGroupsData(userId: string) {
 async function GroupsContent({ userId }: { userId: string }) {
   const groups = await getGroupsData(userId);
 
-  return <CreatePageComponent groups={groups} />;
+  return <CreatePageContent groups={groups} />;
 }
 
 export default async function CreatePage() {
@@ -59,11 +58,9 @@ export default async function CreatePage() {
 
   return (
     <Layout>
-      <PageContent>
-        <Suspense fallback={<Loader />}>
-          <GroupsContent userId={user.id} />
-        </Suspense>
-      </PageContent>
+      <Suspense fallback={<Loader />}>
+        <GroupsContent userId={user.id} />
+      </Suspense>
     </Layout>
   );
 }
