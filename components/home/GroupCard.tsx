@@ -1,6 +1,7 @@
 "use client";
 
 import { Group } from "@/components/types";
+import { formatDate } from "@/lib/utils";
 import { ArrowRightIcon } from "@phosphor-icons/react";
 import styles from "./GroupCard.module.css";
 
@@ -8,15 +9,6 @@ type GroupCardProps = {
   group: Group;
   onClick: (groupId: string) => void;
 };
-
-function formatDate(date: Date | string): string {
-  const d = typeof date === "string" ? new Date(date) : date;
-  return d.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
 
 export default function GroupCard({ group, onClick }: GroupCardProps) {
   const boardsCount = group._count?.boards ?? 0;
@@ -33,15 +25,15 @@ export default function GroupCard({ group, onClick }: GroupCardProps) {
         } as React.CSSProperties
       }
     >
-      <h2 className={styles.name}>{group.name}</h2>
-      <div className={styles.boardsCount}>
+      <h2 className="card-name">{group.name}</h2>
+      <div className="card-count">
         {boardsCount} board{boardsCount !== 1 ? "s" : ""}
       </div>
-      {group.description && (
-        <p className={styles.description}>{group.description}</p>
-      )}
-      <div className={styles.dateContainer}>
-        <span className={styles.createdDate}>Created {formattedDate}</span>
+      <p className="card-description">
+        {group.description || "No description provided."}
+      </p>
+      <div className="card-date-container">
+        <span>Created {formattedDate}</span>
         <ArrowRightIcon size={24} />
       </div>
     </div>

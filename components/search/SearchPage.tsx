@@ -4,13 +4,13 @@ import SearchInput from "@/components/forms/inputs/SearchInput";
 import { Board } from "@/components/types";
 import { useEffect, useState } from "react";
 import BoardItem from "./BoardItem";
-import styles from "./SearchResults.module.css";
+import styles from "./SearchPage.module.css";
 
-type SearchResultsProps = {
+type SearchPageProps = {
   boards: Board[];
 };
 
-export default function SearchResults({ boards }: SearchResultsProps) {
+export default function SearchPage({ boards }: SearchPageProps) {
   const [searchText, setSearchText] = useState("");
   const [filteredBoards, setFilteredBoards] = useState(boards);
 
@@ -36,6 +36,7 @@ export default function SearchResults({ boards }: SearchResultsProps) {
 
   return (
     <div className={styles.container}>
+      <h1>all boards</h1>
       <div className={styles.searchContainer}>
         <SearchInput
           value={searchText}

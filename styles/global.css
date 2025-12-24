@@ -36,3 +36,38 @@ p {
 h1 {
   font-size: var(--font-size-heading-large);
 }
+
+.card-name {
+  font-size: var(--font-size-heading-small-medium);
+  margin-bottom: var(--spacing-small);
+  color: var(--group-text-color);
+  font-weight: 700;
+}
+
+.card-count {
+  font-size: var(--font-size-body-small);
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: var(--spacing-large);
+}
+
+.card-description {
+  margin: 0;
+  font-size: var(--font-size-body-medium);
+  line-height: 1.5;
+  opacity: 0.85;
+  flex-grow: 1;
+  margin-bottom: var(--spacing-large);
+}
+
+.card-date-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.card-date-container span {
+  font-size: var(--font-size-body-xsmall);
+  opacity: 0.9;
+}

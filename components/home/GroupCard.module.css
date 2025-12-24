@@ -1,6 +1,6 @@
 .groupItem {
   padding: var(--spacing-xlarge) var(--spacing-large);
-  border-radius: 0.5rem;
+  border-radius: var(--card-border-radius);
   background-color: var(--group-bg-color);
   cursor: pointer;
   transition: opacity 0.2s;

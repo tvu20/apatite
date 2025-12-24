@@ -40,4 +40,6 @@ body {
   --spacing-xx-large: 50px;
   --spacing-xxx-large: 60px;
   --spacing-xxxx-large: 70px;
+
+  --card-border-radius: 0.5rem;
 }

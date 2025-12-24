@@ -10,10 +10,16 @@ export type Board = {
   id: string;
   name: string;
   description?: string | null;
+  createdAt?: Date | string;
   notes?: Note[];
   group?: {
     id: string;
     name: string;
+    backgroundColor?: string;
+    textColor?: string;
+  };
+  _count?: {
+    notes: number;
   };
 };
 
