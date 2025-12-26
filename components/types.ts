@@ -19,6 +19,7 @@ export type Board = {
     backgroundColor?: string;
     textColor?: string;
   };
+  groupId?: string;
   _count?: {
     notes: number;
   };

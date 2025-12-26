@@ -21,6 +21,10 @@ async function getBoardData(boardId: string, userId: string) {
                 imageUrl: true;
                 link: true;
                 createdAt: true;
+                updatedAt: true;
+              };
+              orderBy: {
+                updatedAt: "desc";
               };
             };
             group: {
@@ -43,6 +47,7 @@ async function getBoardData(boardId: string, userId: string) {
             imageUrl: string;
             link: string | null;
             createdAt: Date;
+            updatedAt: Date;
           }>;
           group: {
             id: string;
@@ -64,6 +69,10 @@ async function getBoardData(boardId: string, userId: string) {
           imageUrl: true,
           link: true,
           createdAt: true,
+          updatedAt: true,
+        },
+        orderBy: {
+          updatedAt: "desc",
         },
       },
       group: {

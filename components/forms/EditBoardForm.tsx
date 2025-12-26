@@ -23,7 +23,7 @@ type FormData = {
 };
 
 type EditBoardFormProps = {
-  board: Board;
+  board: Board & { groupId?: string };
   groups: Group[];
 };
 
@@ -42,7 +42,7 @@ export default function EditBoardForm({ board, groups }: EditBoardFormProps) {
     defaultValues: {
       name: board.name,
       description: board.description || "",
-      group: board.group?.id,
+      group: board.groupId || board.group?.id || "",
     },
   });
 
